@@ -1,30 +1,137 @@
+/* General page styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'comic sans MS', sans-serif;
     margin: 0;
     padding: 0;
-    background-color:#f4f4f4;
+    background-color: #f9d423;
 }
 
+/* Header styling */
 header {
-    background-color: #333;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-}
-
-main {
+    background-color: #6A3D29;
+    color: teal;
     padding: 2rem;
     text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 5px solid #6A3D29;
 }
+
+/* header title styling */
+h1 {
+    font-size: 4rem;
+    color: teal;
+    font-family: 'comic sans ms', sans-serif;
+}
+
+/* section titles */
+h2 {
+    font-size: 2rem;
+    color: #6A3D29;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Buttons */
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #333;
-    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: teal;
+    color: #6A3D29;
     border: none;
     cursor: pointer;
+    border-radius: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgbra(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-    background-color: #555;
+    background-color: #6A3D29;
+    color: teal;
+    transform: scale(1.1);
+}
+
+/* List styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* List item styling */
+li {
+    flex: 1 1 calc(33% - 10px);
+    background-color: teal;
+    margin: 10px 0;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 16px;
+    color: #6A3D29;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+li:hover {
+    background-color: #6A3D29;
+    color: teal;
+    transform: scale(1.05);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    li {
+        flex: 1 1 calc(50% - 10px);
+    }
+}
+
+@media (max-width: 480px) {
+    li {
+        flex: 1 1 100%;
+    }
+}
+
+/* Fetch data button styling */
+#fetchDataButton {
+    padding: 12px 24px;
+    background-color: #6A3D29;
+    color: teal;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#fetchDataButton:hover {
+    background-color: teal;
+    color: #6A3D29;
+    transform: scale(1.1);
+}
+
+/* Project list styling */
+#projectList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+    color: #6A3D29;
+}
+
+#projectList li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    background-color: teal;
+border-radius: 5px;
+}
+
+#projectList li:last-child {
+    border-bottom: none;
 }
