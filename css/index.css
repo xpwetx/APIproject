@@ -1,30 +1,156 @@
+/* General page styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-color:#f4f4f4;
+    background-color: #F4F4F4;
+    color: #222;
 }
 
+/* Header styling */
 header {
-    background-color: #333;
-    color: white;
-    padding: 1rem;
+    background-color: #1D2D44;
+    color: #FFF;
+    padding: 3rem;
     text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 5px solid #D46A6A;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-main {
-    padding: 2rem;
-    text-align: center;
+/* Header title styling */
+h1 {
+    font-size: 4rem;
+    color: #FFF;
+    font-family: 'Playfair Display', serif;
+
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
+
+/* Section titles */
+h2 {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-transform: uppercase;
+}
+
+/* Buttons */
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #333;
-    color: white;
+    padding: 14px 28px;
+    font-size: 18px;
+    background-color: #00408C;
+    color: #FFF;
     border: none;
     cursor: pointer;
+    border-radius: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-    background-color: #555;
+    background-color: #003366;
+    color: #FFF;
+    transform: scale(1.05);
+}
+
+/* List styling */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* List item styling */
+li {
+    flex: 1 1 calc(33% - 20px);
+    background-color: #0056B3;
+    margin: 10px 0;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #FFF;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+li:hover {
+    background-color: #F57C53;
+    color: #FFF;
+    transform: scale(1.05);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    li {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    li {
+        flex: 1 1 100%;
+    }
+}
+
+/* Fetch data button styling */
+#fetchPlanetData,
+#fetchSpeciesData {
+    padding: 12px 24px;
+    background-color: #00408C;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 10px;
+    /* Adds margin around the buttons */
+}
+
+#fetchPlanetData:hover,
+#fetchSpeciesData:hover {
+    background-color: #003366;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+
+/* Footer styling */
+footer {
+    background-color: #B45f5f;
+    color: #FFF;
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Fancy underline for links */
+a {
+    text-decoration: none;
+    color: #F97F51;
+    /* Soft coral */
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #FF6B6B;
+
 }
