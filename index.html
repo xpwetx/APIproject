@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project on OPEN API</title>
     <link rel="stylesheet" href="css/index.css">
-
 </head>
 
 <body>
@@ -15,22 +14,23 @@
         <h1>Kathryn's OPEN API Project</h1>
     </header>
 
-
-    <button id="fetchDataButton">Fetch planet Data</button>
-    <ul id="planetDataList"></ul>
-
-    <div>
-        <button id="fetchSpeciesData">Fetch species data</button>
-    </div>
-    <ul id="planetDataList"></ul>
-
     <section>
-        <section id="projects">
-            <h2>Projects.</h2>
-            <ul id="projectList"></ul>
-        </section>
+        <button id="fetchPlanetData">Fetch planet Data</button>
+        <div id="planetDataList"></div>
+
+
+        <button id="fetchSpeciesData">Fetch species data</button>
+        <div id="speciesDataList"></div>
     </section>
+
+    <footer>
+        <p>&copy; 2025 Kathryn's OPEN API Project </p>
+    </footer>
+
     <script src="js/index.js"></script>
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 
 </html>

@@ -2,65 +2,76 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchPlanetButton = document.getElementById('fetchPlanetData');
     const fetchSpeciesButton = document.getElementById('fetchSpeciesData');
     const planetDataList = document.getElementById('planetDataList');
+    const speciesDataList = document.getElementById('speciesDataList');
 
-    // URL for open API
-    let apiUrl = 'https://swapi.tech/api/planets/1/'; 
+    // Initially, clear the planetDataList (no data should show on page load)
+    planetDataList.innerHTML = '';
+    speciesDataList.innerHTML = '';
 
-    const fetchData = (url) => {
-        planetDataList.innerHTML = '<li>Loading...</li>';
+    // API URLs for planets and species
+    const apiUrls = {
+        planet: 'https://swapi.tech/api/planets/1/',   // Default planet endpoint
+        species: 'https://swapi.tech/api/species/3/'   // Default species endpoint
+    };
 
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('API response:', data);
+    // Function to fetch data from the API
+    const fetchData = async (url, dataType) => {
+        try {
+            let listToUpdate = dataType === 'planet' ? planetDataList: speciesDataList;
+            listToUpdate.innerHTML = '<li>Loading...</li>';
 
-                // Check if data is available
-                if (data && data.result && data.result.properties) {
-                    let content = ''; // check if planet or species data 
-                    if (url.includes('planets')){
-                        const planetName = data.result.properties.name;
-                        const planetClimate =data.result.properties.climate;
-                        const planetPopulation = data.result.properties.population;
-                        const planetTerrain = data.result.properties.terrain; 
-                        content = `Planet name: ${planetName}, Climate: ${planetClimate}, Population: ${planetPopulation}, Terrain: ${planetTerrain}`;
-                    } else if (url.includes('species')) {
-                        const speciesName = data.result.properties.name;
-                        const speciesClassification = data.result.properties.classification;
-                        const speciesLanguage = data.result.properties.language;
-                        content = `Species name: ${speciesName}, Classification: ${speciesClassification}, Language: ${speciesLanguage}`;
-                    }
-                    planetDataList.innerHTML = `<li>${content}</li>`;
-                } else {
-                    planetDataList.innerHTML = '<li>No data available.</li>';
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-                planetDataList.innerHTML = '<li>Failed to fetch data. Please try again later.</li>'
-            });
-        };
+            const response = await fetch(url);
+            if (!response.ok) throw new Error('Failed to fetch data.');
 
-        // Event listener for Planet button
-        if (fetchPlanetButton) {
-            fetchPlanetButton.addEventListener('click', () => {
-                apiUrl = 'https://swapi.tech/api/planets/5';
-                fetchData(apiUrl);
-            });
+            const data = await response.json();
+            console.log('Fetched Data:', data);
+
+            if (data && data.result && data.result.properties) {
+                displayData(data, listToUpdate, dataType);
+
+            } else {
+                listToUpdate.innerHTML = '<li>No valid data returned from the API.</li>';
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            listToUpdate.innerHTML = '<li>Failed to fetch data. Please try again later.</li>';
         }
+    };
 
-        // Event listener for Species button
-        if (fetchSpeciesButton) {
-            fetchSpeciesButton.addEventListener('click', () => {
-                apiUrl = 'https://swapi.tech/api/species/3/';
-                fetchData(apiUrl);
-            });
+    const displayData = (data, list, dataType) => {
+        let content = '';
+        const properties = data.result.properties;
+
+        if (dataType === 'planet') {
+            content = `
+            <strong>Planet:</strong> ${properties.name}<br>
+            <strong>Climate:</strong> ${properties.climate}<br>
+            <strong>Population:</strong> ${properties.population}<br>
+            <strong>Terrain:</strong> ${properties.terrain}
+            `;
+        } else if (dataType === 'species') {
+            content = `
+            <strong>Species:</strong> ${properties.name}<br>
+            <strong>Classification:</strong> ${properties.classification}<br>
+            <strong>Language:</strong> ${properties.language}
+            `;
         }
-         // Initially load planet data by default
-         fetchData(apiUrl);
-    });
-                    
+        list.innerHTML = `<p>${content}</p>`;
+    };
+
+    if (fetchPlanetButton) {
+        fetchPlanetButton.addEventListener('click', () => {
+            console.log('Fetching planet data...');
+            fetchData(apiUrls.planet, 'planet');
+        });
+    }
+
+    if (fetchSpeciesButton) {
+        fetchSpeciesButton.addEventListener('click', () => {
+            console.log('Fetching species data...');
+            fetchData(apiUrls.species, 'species');
+        });
+    }
+});
+
+
